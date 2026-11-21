@@ -155,7 +155,7 @@ void MadenciEditor::paintPhotoCard (Graphics& g)
     g.fillRect (card);
     g.setColour (Colours::black.withAlpha (0.12f));
     for (float y = card.getY(); y < card.getBottom(); y += 3.f) g.fillRect (card.getX(), y, card.getWidth(), 1.f);
-    const auto cap = card.removeFromBottom (24.f);
+    const auto cap = card.withTrimmedTop (card.getHeight() - 24.f);
     g.setColour (Colour (0xff0d0620).withAlpha (0.9f)); g.fillRect (cap);
     g.setColour (mdn::pink()); g.setFont (mdn::font (12.f, Font::bold));
     g.drawText (TR ("MADENCİ 01  ·  VARDİYADA"), cap, Justification::centred);
@@ -249,7 +249,7 @@ void MadenciEditor::paintOrb (Graphics& g)
         g.setFont (mdn::font (36.f, Font::bold));
         g.drawText (String (names[((n % 12) + 12) % 12]) + String (n / 12 - 1), pill.withTrimmedBottom (18.f).toNearestInt(), Justification::centred);
         g.setFont (mdn::font (11.f, Font::bold)); g.setColour (mdn::pink());
-        g.drawText (String (dispCents >= 0 ? "+" : "") + String (roundToInt (dispCents)) + " cent", pill.removeFromBottom (20.f).toNearestInt(), Justification::centred);
+        g.drawText (String (dispCents >= 0 ? "+" : "") + String (roundToInt (dispCents)) + " cent", pill.withTrimmedTop (pill.getHeight() - 20.f).toNearestInt(), Justification::centred);
     }
     else
     {
